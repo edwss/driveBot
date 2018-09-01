@@ -2,7 +2,7 @@ from telegram.ext import Updater,CommandHandler,CallbackQueryHandler,Conversatio
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import files, drive
 
-updater = Updater(token='643507808:AAEcfontlmriVw2Dc341-GEq15dWnXyBskg')
+updater = Updater(token='')
 dispatcher = updater.dispatcher
 
 def start(bot,update):
