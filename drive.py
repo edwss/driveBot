@@ -7,11 +7,11 @@ class Drive:
     def __init__(self):
         try:
             SCOPES = 'https://www.googleapis.com/auth/drive.file'
-            os.chdir("/home/eduado/Documents/Projetos/Python/DriveBot/tmp/")
-            store = file.Storage('../token/token.json')
+            os.chdir("/home/eduado/Documents/Projetos/Python/driveBot")
+            store = file.Storage('token/token.json')
             creds = store.get()
             if not creds or creds.invalid:
-                flow = client.flow_from_clientsecrets('../credentials/credentials.json', SCOPES)
+                flow = client.flow_from_clientsecrets('credentials/credentials.json', SCOPES)
                 creds = tools.run_flow(flow, store)
             self.service = build('drive', 'v3', http=creds.authorize(Http()))
         except:
@@ -22,7 +22,6 @@ class Drive:
             file_metadata = {'name': _filename, 'parents': ["17NNaQFAd3YvUDGD0eWfSxWUyAw0dmi0c"]}
             media =  MediaFileUpload(_filename,mimetype=_mimeType)
             fileUpload = self.service.files().create(body=file_metadata, media_body=media, fields='id').execute()
-            print(fileUpload)
             if fileUpload:
                 print('File ID: %s' % fileUpload.get('id'))
                 os.remove(_filename)
