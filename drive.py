@@ -19,14 +19,13 @@ class Drive:
 
     def uploadFile(self, _filename, _mimeType):
         try:
-            os.chdir("/home/eduado/Documents/Projetos/Python/DriveBot/tmp/")
             file_metadata = {'name': _filename, 'parents': ["17NNaQFAd3YvUDGD0eWfSxWUyAw0dmi0c"]}
             media =  MediaFileUpload(_filename,mimetype=_mimeType)
             fileUpload = self.service.files().create(body=file_metadata, media_body=media, fields='id').execute()
             print(fileUpload)
             if fileUpload:
                 print('File ID: %s' % fileUpload.get('id'))
-                os.remove("/home/eduado/Documents/Projetos/Python/DriveBot/tmp/" + _filename)
+                os.remove(_filename)
                 return 1
             else:
                 self.__init__()

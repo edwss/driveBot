@@ -1,7 +1,6 @@
 import os,subprocess
 import drive
 
-#only works with projects on python folder
 class Files:
     def __init__(self):
         self.path = '/home/eduado/Documents/Projetos/'
@@ -12,8 +11,7 @@ class Files:
 
     def compactProject(self, _name):
         os.chdir(self.path + self.language)
-        os.system('zip DriveBot/tmp/{} -r {}/'.format(_name,_name))
-        os.chdir(self.path + "Python/DriveBot/tmp/")
+        os.system('zip {} -r {}/'.format(_name,_name))
 
     def changeProjectLanguage(self, _language = None):
         self.language = _language

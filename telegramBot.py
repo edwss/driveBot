@@ -1,8 +1,8 @@
 from telegram.ext import Updater,CommandHandler,CallbackQueryHandler,ConversationHandler
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 import files, drive
-
-updater = Updater(token='')
+token = open('credentials/telegramToken')
+updater = Updater(token=token.readline())
 dispatcher = updater.dispatcher
 
 def start(bot,update):
@@ -39,7 +39,6 @@ def languagesButton(bot, update):
     parseData = query.data.split('_')
     if 'step1' in parseData[0]:
         _file.changeProjectLanguage(parseData[1])
-        #bot.send_message(chat_id=update.message.chat_id, text="Selecione o Projeto")
         bot.send_message(chat_id=507188149, text="Selecione o Projeto")
         listProjects(bot,update)
         bot.edit_message_text(text="Você selecionou: {}".format(parseData[1]),
